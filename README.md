@@ -38,7 +38,11 @@ Define two commands:
     the contact. Field "pager" should contain a mobile number for sms alerts in
     full international format e.g. 48xxxxxxxxx
     
+<<<<<<< HEAD
 	define contact {
+=======
+	define contact{
+>>>>>>> 8969ae7990c925a237a6a4faa5694b0b447de547
 	        contact_name                    engineer
 	        alias                           Support Engineer
 	        service_notification_period     24x7
