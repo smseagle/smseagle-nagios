@@ -21,7 +21,7 @@ NAGIOS SETUP
     Replace SMSEAGLEIP with IP Address of your SMSEagle device.
     Replace SMSEAGLEUSER and SMSEAGLEPASSWORD with your user/password to SMSEagle.
 
-Define two commands as follows
+Define two commands:
 
 	define command { 
 	        command_name notify-by-sms 
@@ -36,10 +36,9 @@ Define two commands as follows
 
 2. In your nagios contacts (Commonly found on contacts.cfg) add 
     the contact. Field "pager" should contain a mobile number for sms alerts in
-	full international format e.g. 48xxxxxxxxx
+    full international format e.g. 48xxxxxxxxx
     
-
-	define contact{
+	define contact {
 	        contact_name                    engineer
 	        alias                           Support Engineer
 	        service_notification_period     24x7
