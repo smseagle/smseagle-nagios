@@ -2,12 +2,13 @@ Nagios-SMS-EAGLE
 ================
 
 Plugin for Nagios to send SMS Text Message notifications with SMSEagle device
+Original file: https://bitbucket.org/proximus/smseagle-nagios
 Forked from Nagios-SMS-WT (https://github.com/m-r-h/Nagios-SMS-WT)
 
 Published on BSD License
 
 
-SMSEAGLE SETUP
+#### SMSEAGLE SETUP
 
 Create a new user for this script in SMSEagle.
 This user will be referenced below as: SMSEAGLEUSER and SMSEAGLEPASSWORD 
@@ -15,11 +16,11 @@ Replace SMSEAGLEUSER and SMSEAGLEPASSWORD in script below with your values.
 
 
 
-NAGIOS SETUP
+#### NAGIOS SETUP
 
 1. Create the SMS notification commands.  (Commonly found in commands.cfg)
-    Replace SMSEAGLEIP with IP Address of your SMSEagle device.
-    Replace SMSEAGLEUSER and SMSEAGLEPASSWORD with your user/password to SMSEagle.
+   Replace SMSEAGLEIP with IP Address of your SMSEagle device.
+   Replace SMSEAGLEUSER and SMSEAGLEPASSWORD with your user/password to SMSEagle.
 
 Define two commands:
 
@@ -34,10 +35,9 @@ Define two commands:
 	}
 
 
-2. In your nagios contacts (Commonly found on contacts.cfg) add 
-    the contact. Field "pager" should contain a mobile number for sms alerts in
-    full international format e.g. 48xxxxxxxxx
-    
+2. In your nagios contacts (Commonly found on contacts.cfg) add the contact. 
+   Field "pager" should contain a mobile number for sms alerts in full international format e.g. 48xxxxxxxxx
+
 	define contact {
 	        contact_name                    engineer
 	        alias                           Support Engineer
@@ -50,3 +50,4 @@ Define two commands:
 	        email                           engineer@somedomain.com
 	        pager                           48xxxxxxxx
 	}
+
