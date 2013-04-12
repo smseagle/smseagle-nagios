@@ -1,11 +1,16 @@
 Nagios-SMS-EAGLE
 ================
 
-Plugin for Nagios to send SMS Text Message notifications with SMSEagle device
-Original file: https://bitbucket.org/proximus/smseagle-nagios
+Plugin for Nagios to send SMS Text Message notifications with SMSEagle device (www.smseagle.eu)
+
+
+Project location: https://bitbucket.org/proximus/smseagle-nagios
+
 Forked from Nagios-SMS-WT (https://github.com/m-r-h/Nagios-SMS-WT)
 
 Published on BSD License
+
+Setup is extremally easy - it should take 5-10min.
 
 
 #### SMSEAGLE SETUP
