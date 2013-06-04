@@ -2,13 +2,14 @@
 # 
 # ============================== SUMMARY =====================================
 #
+# Summary : This plugin sends SMS alerts with SMSEagle hardware sms gateway
 # Program : notify_eagle_sms.pl
 # Version : 1.0
 # Date : Feb 21 2013
-# Author : Radoslaw Janowski / Proximus Software
+# Author : Radoslaw Janowski / SMSEAGLE.EU 
 # Forked from: Nagios-SMS-WT (https://github.com/m-r-h/Nagios-SMS-WT)
-# Summary : This plugin sends SMS alerts with SMSEagle hardware sms gateway
 # License : BSD
+# Copyright (c) 2013, SMSEagle www.smseagle.eu
 #
 # ============================= MORE INFO ======================================
 #
