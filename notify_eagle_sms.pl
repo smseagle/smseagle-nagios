@@ -38,7 +38,7 @@
 # 
 # 	define command { 
 # 	        command_name notify-by-sms 
-# 	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEIP -u SMSEAGLEUSER -p SMSEAGLEPASSWORD -d $CONTACTPAGER$ -t "NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
+# 	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEIP -u SMSEAGLEUSER -p SMSEAGLEPASSWORD -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
 # 	} 
 #	
 # 	define command { 
