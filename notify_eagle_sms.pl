@@ -21,7 +21,7 @@
 # ============================= SCRIPT ==========================================
 # Script params description:
 #
-# smseagleurl = URL of your SMSEagle device (eg.: https://192.168.1.150)
+# smseagleurl = URL of your SMSEagle device (eg.: http://192.168.1.150)
 # apitoken = SMSEagle API token
 # dstaddr = Destination mobile number (the number to send SMS to)
 # txt = the text message body
