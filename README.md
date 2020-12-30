@@ -15,28 +15,30 @@ Setup is extremally easy - it should take 5-10min.
 
 #### SMSEAGLE SETUP
 
-Create a new user for this script in SMSEagle.
-This user will be referenced below as: SMSEAGLEUSER and SMSEAGLEPASSWORD 
-Replace SMSEAGLEUSER and SMSEAGLEPASSWORD in script below with your values.
+1. Create a new user for this script in SMSEagle webGUI > menu Users.
+2. When the user is saved, edit its properties and under "API Access token": 
+a) check "Enable token"
+b) click "Generate new token"
+This will generate a new API access token for your SMSEagle. This API token will be referenced below as SMSEAGLEAPITOKEN. Replace SMSEAGLEAPITOKEN in script below with your value.
 
 
 
 #### NAGIOS SETUP
 
 1. Create the SMS notification commands.  (Commonly found in commands.cfg)
-   Replace SMSEAGLEIP with IP Address of your SMSEagle device.
-   Replace SMSEAGLEUSER and SMSEAGLEPASSWORD with your user/password to SMSEagle.
+   Replace SMSEAGLEURL with URL Address of your SMSEagle device (for example: http://192.168.50.150)
+   Replace SMSEAGLEAPITOKEN with your API token for your SMSEagle (for example: NZg2yNmWYb5Q7I3Y3Ifnk5E)
 
 Define two commands:
 
 	define command { 
 	        command_name notify-by-sms 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEIP -u SMSEAGLEUSER -p SMSEAGLEPASSWORD -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
 	} 
 	
 	define command { 
 	        command_name host-notify-by-sms 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEIP -u SMSEAGLEUSER -p SMSEAGLEPASSWORD -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 
@@ -56,3 +58,8 @@ Define two commands:
 	        pager                           48xxxxxxxx
 	}
 
+
+#### ADDITIONAL COMMENTS
+If you would like to use a newline character in your text message use the following string for a newline: "$'\n'"  
+For example:
+$USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$"$'\n'"$HOSTSTATE$"$'\n'"Host($HOSTALIAS$)"$'\n'"Info($HOSTOUTPUT$)"$'\n'"Time($SHORTDATETIME$)"
