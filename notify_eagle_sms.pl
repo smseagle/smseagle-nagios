@@ -45,7 +45,8 @@ GetOptions(
 	'type=s'    => \$args{type},
 	'dstaddr=s' => \$args{dstaddr},
 	'txt=s'     => \$args{txt},
-	'duration=s'     => \$args{duration}
+	'duration=s'     => \$args{duration},
+	'voiceid=s'     => \$args{voiceid},
 );
 
 my $type;
