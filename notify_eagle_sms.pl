@@ -23,7 +23,7 @@
 #
 # smseagleurl = URL of your SMSEagle device (eg.: http://192.168.1.150)
 # apitoken = SMSEagle API token
-# type = Type of the message/call to send (possible values: sms, ring, tts, tts_adv, default: sms)
+# type = Type of the message/call to send (possible values: sms, ring, tts, tts_adv; default: sms)
 # dstaddr = Destination mobile number (the number to send message/make a call to)
 # txt = The text message body (required for SMS, TTS and TTS Advanced)
 # duration = Duration of the call (Ring, TTS and TTS Advanced only, default: 10)
@@ -104,15 +104,15 @@ if ($type eq 'tts_adv') {
 my $baseurl = $args{smseagleurl}.'/http_api/'.$method;
 my $params = '?access_token='.$args{apitoken}.'&to='.$args{dstaddr};
 
-if ($args{type} eq 'sms' || $args{type} eq 'tts' || $args{type} eq 'tts_adv') {
+if ($type eq 'sms' || $type eq 'tts' || $type eq 'tts_adv') {
     $params = $params."&message=".$text;
 }
 
-if ($args{type} eq 'ring' || $args{type} eq 'tts' || $args{type} eq 'tts_adv') {
+if ($type eq 'ring' || $type eq 'tts' || $type eq 'tts_adv') {
     $params = $params."&duration=".$duration;
 }
 
-if ($args{type} eq 'tts_adv') {
+if ($type eq 'tts_adv') {
     $params = $params."&voice_id=".$args{voiceid};
 }
 
