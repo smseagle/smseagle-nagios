@@ -41,42 +41,42 @@ Define two commands:
 
 	define command {
 	        command_name notify-by-sms 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($SERVICEOUTPUT$) Date($SHORTDATETIME$)" 
 	} 
 	
 	define command { 
 	        command_name host-notify-by-sms 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name notify-by-ring-call 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type ring -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c ring -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTNAME$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name host-notify-by-ring-call 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type ring -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c ring -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name notify-by-tts-call 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type tts -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c tts -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name host-notify-by-tts-call 
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type tts -dstaddr $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c tts -dstaddr $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name notify-by-tts-adv-call
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type tts_adv -dstaddr $CONTACTPAGER$ -voiceid SMSEAGLEVOICE -txt "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c tts_adv -dstaddr $CONTACTPAGER$ -voiceid SMSEAGLEVOICE -t "$NOTIFICATIONTYPE$ $SERVICESTATE$ $SERVICEDESC$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 	define command { 
 	        command_name host-notify-by-tts-adv-call
-	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -type tts_adv -dstaddr $CONTACTPAGER$ -voiceid SMSEAGLEVOICE -txt "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
+	        command_line $USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -c tts_adv -dstaddr $CONTACTPAGER$ -voiceid SMSEAGLEVOICE -t "$NOTIFICATIONTYPE$ $HOSTSTATE$ Host($HOSTALIAS$) Info($HOSTOUTPUT$) Time($SHORTDATETIME$)" 
 	}
 
 
@@ -101,4 +101,4 @@ Define two commands:
 #### ADDITIONAL COMMENTS
 If you would like to use a newline character in your text message use the following string for a newline: "$'\n'"  
 For example:\
-$USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -d $CONTACTPAGER$ -txt "$NOTIFICATIONTYPE$"$'\n'"$HOSTSTATE$"$'\n'"Host($HOSTALIAS$)"$'\n'"Info($HOSTOUTPUT$)"$'\n'"Time($SHORTDATETIME$)"
+$USER1$/notify_eagle_sms.pl -s SMSEAGLEURL -a SMSEAGLEAPITOKEN -d $CONTACTPAGER$ -t "$NOTIFICATIONTYPE$"$'\n'"$HOSTSTATE$"$'\n'"Host($HOSTALIAS$)"$'\n'"Info($HOSTOUTPUT$)"$'\n'"Time($SHORTDATETIME$)"
