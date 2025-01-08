@@ -23,8 +23,11 @@
 #
 # smseagleurl = URL of your SMSEagle device (eg.: http://192.168.1.150)
 # apitoken = SMSEagle API token
-# dstaddr = Destination mobile number (the number to send SMS to)
-# txt = the text message body
+# content = Content type of the message/call to send (possible values: sms, ring, tts, tts_adv; default: sms)
+# dstaddr = Destination mobile number (the number to send message/make a call to)
+# txt = The text message body (required for SMS, TTS and TTS Advanced)
+# duration = Duration of the call (Ring, TTS and TTS Advanced only, default: 10)
+# voiceid = ID of the voice model (required for TTS Advanced)
 
 use strict;
 use LWP::Simple;
@@ -39,23 +42,83 @@ GetOptions(
 	'help'      => \$args{help},
 	'smseagleurl=s' => \$args{smseagleurl},
 	'apitoken=s'      => \$args{apitoken},
+	'content=s'    => \$args{content},
 	'dstaddr=s' => \$args{dstaddr},
-	'txt=s'     => \$args{txt}
-	 );
+	'txt=s'     => \$args{txt},
+	'duration=s'     => \$args{duration},
+	'voiceid=s'     => \$args{voiceid},
+);
 
-if(defined($args{help}) || !defined($args{smseagleurl}) || !defined($args{apitoken}) || !defined($args{dstaddr}) || !defined($args{txt}) ) {
-	print "Script usage: notify_eagle_sms.pl --smseagleurl <URL of your SMSEagle> --apitoken <API token for your SMSEagle> --dstaddr <phone number> --txt <message>
-Example: notify_eagle_sms.pl --smseagleurl http://192.168.50.150 --apitoken jCOlMH8F2q --dstaddr 123456789 --txt \"My Message\"\n";
+my $content;
+if (!defined($args{content})) {
+    $content = 'sms';
+} else {
+    $content = $args{content};
+}
+
+my $duration;
+if (!defined($args{duration})) {
+    $duration = '10';
+} else {
+    $duration = $args{duration};
+}
+
+if(defined($args{help}) || !defined($args{smseagleurl}) || !defined($args{apitoken}) || !defined($args{dstaddr}))
+{
+	print "Script usage: notify_eagle_sms.pl --smseagleurl <URL of your SMSEagle> --apitoken <API token for your SMSEagle> --content <Message content type (possible values: sms, ring, tts, tts_adv)> --dstaddr <Phone number> --txt <Message> --duration <Call duration> --voiceid <Voice model ID>
+Example: notify_eagle_sms.pl --smseagleurl http://192.168.50.150 --apitoken jCOlMH8F2q --content sms --dstaddr 123456789 --txt \"My Message\"\n";
 	exit(0);
+}
+
+if ($content eq 'sms' && !defined($args{txt})) {
+    print('Missing required parameters (txt)');
+    exit(0);
+}
+
+if ($content eq 'tts' && !defined($args{txt})) {
+    print('Missing required parameters (txt)');
+    exit(0);
+}
+
+if ($content eq 'tts_adv' && (!defined($args{txt}) || !defined($args{voiceid}))) {
+    print('Missing required parameters (txt, voiceid)');
+    exit(0);
 }
 
 ## URL Encode the message text
 my $text = uri_escape($args{txt});
 
 ## Build the URL
-my $baseurl = $args{smseagleurl}.'/http_api/';
-my $req = GET $baseurl."send_sms?access_token=$args{apitoken}&to=$args{dstaddr}&message=$text";
+my $method = "send_sms";
 
+if ($content eq 'ring') {
+    $method = "ring_call";
+}
+if ($content eq 'tts') {
+    $method = "tts_call";
+}
+if ($content eq 'tts_adv') {
+    $method = "tts_adv_call";
+}
+
+my $baseurl = $args{smseagleurl}.'/http_api/'.$method;
+my $params = '?access_token='.$args{apitoken}.'&to='.$args{dstaddr};
+
+if ($content eq 'sms' || $content eq 'tts' || $content eq 'tts_adv') {
+    $params = $params."&message=".$text;
+}
+
+if ($content eq 'ring' || $content eq 'tts' || $content eq 'tts_adv') {
+    $params = $params."&duration=".$duration;
+}
+
+if ($content eq 'tts_adv') {
+    $params = $params."&voice_id=".$args{voiceid};
+}
+
+$baseurl = $baseurl.$params;
+
+my $req = GET $baseurl;
 
 ## Create the user agent and send the request
 my $ua = LWP::UserAgent->new();
