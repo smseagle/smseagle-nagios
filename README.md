@@ -16,12 +16,13 @@ Setup is extremally easy - it should take 5-10min.
 #### SMSEAGLE SETUP
 
 1. Create a new user for this script in SMSEagle webGUI > menu Users.
-2. When the user is saved, edit its permissions by clicking "Access to API" and under "API Access token":\
-a) check "Enable token"\
-b) click "Generate new token"\
+2. When the user is saved, edit its permissions by clicking "Access to API":\
+a) check "APIv2"\
+b) click "Generate new token"
 
 This will generate a new API access token for your SMSEagle. This API token will be referenced below as **SMSEAGLEAPITOKEN**. Replace **SMSEAGLEAPITOKEN** in script below with your value.
-3. In the same menu, add the permissions for methods you want to use:
+
+3. In the same menu, add the permissions for APIv2 methods you want to use:
    - send_sms => sms
    - ring_call => ring
    - tts_call => tts
@@ -37,7 +38,7 @@ This will generate a new API access token for your SMSEagle. This API token will
 (Optional parameter for calls, default: 10) Add **-duration** parameter with call duration value (in seconds, e.g. -duration 15)\
 (Required for TTS Advanced) Replace **SMSEAGLEVOICE** with voice model ID (found in SMSEagle menu, Calls > TTS Voice models)
 
-Define two commands:
+Define below commands:
 
 	define command {
 	        command_name notify-by-sms 
