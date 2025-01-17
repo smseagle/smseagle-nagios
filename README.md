@@ -17,12 +17,12 @@ Setup is extremally easy - it should take 5-10min.
 
 1. Create a new user for this script in SMSEagle webGUI > menu Users.
 2. When the user is saved, edit its permissions by clicking "Access to API":\
-a) check "APIv2"\
+a) check "APIv1"\
 b) click "Generate new token"
 
 This will generate a new API access token for your SMSEagle. This API token will be referenced below as **SMSEAGLEAPITOKEN**. Replace **SMSEAGLEAPITOKEN** in script below with your value.
 
-3. In the same menu, add the permissions for APIv2 methods you want to use:
+3. In the same menu, add the permissions for APIv1 methods you want to use:
    - send_sms => sms
    - ring_call => ring
    - tts_call => tts
